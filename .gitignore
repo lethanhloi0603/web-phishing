@@ -1,0 +1,32 @@
+.venv/
+.venv311/
+.env
+.env.*
+!.env.example
+
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+
+# Datasets and generated experiment artifacts are intentionally kept local.
+data/**
+!data/.gitkeep
+outputs/**
+!outputs/.gitkeep
+external/
+.cache/
+
+# Trained models and common large research artifacts.
+*.pt
+*.pth
+*.ckpt
+*.parquet
+*.zip
+*.gz
+
+# Local editor and operating-system files.
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store
