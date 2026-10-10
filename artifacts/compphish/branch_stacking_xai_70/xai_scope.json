@@ -1,0 +1,11 @@
+{
+  "framework_feature_count": 70,
+  "ensemble_level": "Exact logistic meta-classifier coefficients reported separately for every branch-aligned OOF stacking model.",
+  "feature_level": "TreeSHAP and permutation importance for full__catboost only.",
+  "feature_model": "full__catboost",
+  "warning": "Feature-level SHAP values explain full__catboost, not a complete stacking ensemble. Stacking is explained separately at meta-model level.",
+  "shap_rows": 1000,
+  "test_rows_for_permutation": 2054,
+  "feature_count": 70,
+  "seed": 42
+}

@@ -1,0 +1,46 @@
+{
+  "dataset": "CompPhish v4",
+  "processed_data": "C:\\Users\\admin\\Downloads\\phishgen_detector\\data\\processed\\compphish\\compphish_integrity_split.csv.gz",
+  "split": "registered-domain-disjoint Train/Test",
+  "train_rows": 13203,
+  "test_rows": 2054,
+  "cv": "StratifiedGroupKFold inside Train, grouped by registered_domain",
+  "cv_folds": 5,
+  "model_set": "framework",
+  "extended_all_views": false,
+  "views": [
+    "brand_url",
+    "html",
+    "full"
+  ],
+  "feature_selector": "none",
+  "dropped_features": [],
+  "drop_visible_url_cues": false,
+  "include_fold_safe_mean_features": true,
+  "fold_safe_mean_feature_rule": "thresholds fitted from phishing rows inside each OOF training fold; final thresholds fitted from all Train rows; Test never used",
+  "resampling": "none",
+  "class_weight": "none",
+  "published_global_mean_values_used": false,
+  "fold_safe_label_conditioned_features_used": true,
+  "full_view_feature_count": 70,
+  "decision_threshold": 0.5,
+  "reference_model": "full__catboost",
+  "ensemble_training": "branch-aligned two-level OOF stacking; no cross-view mixing; Test unused for training",
+  "stacking_recipes": {
+    "stacking_boosting": [
+      "hist_gradient_boosting",
+      "xgboost",
+      "lightgbm",
+      "catboost"
+    ],
+    "stacking_heterogeneous": [
+      "logistic_regression",
+      "rbf_svm",
+      "random_forest",
+      "catboost",
+      "mlp"
+    ]
+  },
+  "quick": false,
+  "seed": 42
+}

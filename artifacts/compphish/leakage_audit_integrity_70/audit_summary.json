@@ -1,0 +1,29 @@
+{
+  "dataset": "CompPhish v4",
+  "train_rows": 13203,
+  "test_rows": 2054,
+  "model_feature_count": 70,
+  "feature_protocol": "70 published features; url_more_than_mean and domain_more_than_mean recomputed from Train phishing rows only",
+  "cross_split_exact_feature_hashes": 0,
+  "cross_split_exact_feature_rows": 0,
+  "nearest_feature_distance_quantiles": {
+    "0.0": 0.0,
+    "0.01": 0.05769018122634914,
+    "0.05": 0.1446884255220122,
+    "0.25": 0.9291963555481714,
+    "0.5": 2.1914547092017007,
+    "0.75": 3.377535756846681,
+    "0.95": 5.9673080219620225,
+    "0.99": 10.918345699778106,
+    "1.0": 1178.3816784823423
+  },
+  "zero_distance_test_rows": 4,
+  "html_rows_hashed": 15257,
+  "html_read_failures": 0,
+  "cross_split_raw_sha256_hashes": 0,
+  "cross_split_raw_sha256_rows": 0,
+  "cross_split_normalized_sha256_hashes": 0,
+  "cross_split_normalized_sha256_rows": 0,
+  "near_duplicate_html_pairs": 259085,
+  "near_html_hamming_threshold": 3
+}

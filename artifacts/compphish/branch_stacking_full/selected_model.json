@@ -1,0 +1,8 @@
+{
+  "model": "full__catboost",
+  "threshold": 0.5,
+  "selection_source": "pre-specified before Test",
+  "selection_order": null,
+  "threshold_source": "fixed by protocol",
+  "test_used_for_selection": false
+}

@@ -1,0 +1,27 @@
+{
+  "selected_model": "full__catboost",
+  "decision_threshold": 0.5,
+  "test_rows": 2054,
+  "test_metrics": {
+    "rows": 2054,
+    "accuracy": 0.9430379746835443,
+    "precision": 0.9480840543881335,
+    "recall": 0.9109263657957245,
+    "specificity": 0.9653465346534653,
+    "f1": 0.9291338582677166,
+    "balanced_accuracy": 0.9381364502245949,
+    "mcc": 0.882039024128112,
+    "fpr": 0.034653465346534656,
+    "fnr": 0.08907363420427554,
+    "brier": 0.04308266189367348,
+    "ece_15": 0.028258239568799647,
+    "tn": 1170,
+    "fp": 42,
+    "fn": 75,
+    "tp": 767,
+    "pr_auc": 0.9813296881189877,
+    "roc_auc": 0.987632581547941
+  },
+  "inference_tests": "not used (descriptive comparison protocol)",
+  "test_used_for_selection": false
+}
