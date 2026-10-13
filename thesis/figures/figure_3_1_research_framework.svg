@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="720" viewBox="0 0 1400 720" role="img" aria-labelledby="title desc">
+  <title id="title">Khung nghiên cứu phát hiện website phishing</title>
+  <desc id="desc">Sơ đồ từ hai bộ dữ liệu qua kiểm soát chất lượng, biểu diễn, mô hình, đánh giá và phân tích.</desc>
+  <defs>
+    <style>
+      .title{font:700 30px Arial;fill:#17324d}.h{font:700 19px Arial;fill:#17324d}.t{font:15px Arial;fill:#29465f}.small{font:14px Arial;fill:#48657b}.box{rx:18;stroke-width:2}.arrow{stroke:#557a95;stroke-width:3;fill:none;marker-end:url(#m)}
+    </style>
+    <marker id="m" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L9,3 L0,6 Z" fill="#557a95"/></marker>
+    <filter id="s" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="4" stdDeviation="5" flood-opacity=".12"/></filter>
+  </defs>
+  <rect width="1400" height="720" fill="#f7fafc"/>
+  <text x="700" y="48" text-anchor="middle" class="title">KHUNG NGHIÊN CỨU ĐỀ XUẤT</text>
+  <g filter="url(#s)">
+    <rect class="box" x="50" y="105" width="230" height="190" fill="#e8f3ff" stroke="#4b91d1"/>
+    <text x="165" y="140" text-anchor="middle" class="h">1. Dữ liệu</text>
+    <text x="75" y="178" class="t">• PhishVN: 53.116 URL</text>
+    <text x="75" y="207" class="t">• Phish360: 10.748 mẫu</text>
+    <text x="75" y="236" class="t">• Nhãn phishing/benign</text>
+    <text x="75" y="265" class="t">• Split chính thức</text>
+    <rect class="box" x="330" y="105" width="245" height="190" fill="#eaf8f1" stroke="#3d9b72"/>
+    <text x="452" y="140" text-anchor="middle" class="h">2. Kiểm soát chất lượng</text>
+    <text x="355" y="178" class="t">• Chuẩn hóa và kiểm tra thiếu</text>
+    <text x="355" y="207" class="t">• Domain-grouped split</text>
+    <text x="355" y="236" class="t">• Hash HTML, loại 42 mẫu</text>
+    <text x="355" y="265" class="t">• Test được khóa</text>
+    <rect class="box" x="625" y="105" width="260" height="190" fill="#fff5df" stroke="#d89a27"/>
+    <text x="755" y="140" text-anchor="middle" class="h">3. Biểu diễn dữ liệu</text>
+    <text x="650" y="178" class="t">• 21 đặc trưng URL</text>
+    <text x="650" y="207" class="t">• URL character TF-IDF</text>
+    <text x="650" y="236" class="t">• HTML text TF-IDF</text>
+    <text x="650" y="265" class="t">• DOM tĩnh và fusion</text>
+    <rect class="box" x="935" y="105" width="215" height="190" fill="#f3edff" stroke="#8561c5"/>
+    <text x="1042" y="140" text-anchor="middle" class="h">4. Mô hình</text>
+    <text x="960" y="178" class="t">• LR, Linear SVM</text>
+    <text x="960" y="207" class="t">• RF, Extra Trees</text>
+    <text x="960" y="236" class="t">• HistGradientBoosting</text>
+    <text x="960" y="265" class="t">• Voting và stacking</text>
+    <rect class="box" x="1200" y="105" width="150" height="190" fill="#ffecef" stroke="#c75b70"/>
+    <text x="1275" y="140" text-anchor="middle" class="h">5. Đánh giá</text>
+    <text x="1220" y="178" class="t">PR-AUC</text><text x="1220" y="207" class="t">F1, MCC</text>
+    <text x="1220" y="236" class="t">ROC-AUC</text><text x="1220" y="265" class="t">FPR/FNR</text>
+  </g>
+  <path class="arrow" d="M280 200 H325"/><path class="arrow" d="M575 200 H620"/><path class="arrow" d="M885 200 H930"/><path class="arrow" d="M1150 200 H1195"/>
+  <path class="arrow" d="M1275 300 V355 H755 V395"/>
+  <g filter="url(#s)">
+    <rect class="box" x="170" y="410" width="310" height="180" fill="#ffffff" stroke="#5f7f95"/>
+    <text x="325" y="448" text-anchor="middle" class="h">Đánh giá nội bộ</text>
+    <text x="200" y="485" class="t">• PhishVN: mô hình URL</text>
+    <text x="200" y="516" class="t">• Phish360: URL–HTML–DOM</text>
+    <text x="200" y="547" class="t">• OOF, validation, locked test</text>
+    <rect class="box" x="545" y="410" width="310" height="180" fill="#ffffff" stroke="#5f7f95"/>
+    <text x="700" y="448" text-anchor="middle" class="h">Đánh giá tổng quát hóa</text>
+    <text x="575" y="485" class="t">• PhishVN → Phish360</text>
+    <text x="575" y="516" class="t">• Phish360 → PhishVN</text>
+    <text x="575" y="547" class="t">• Phân tích dataset shift</text>
+    <rect class="box" x="920" y="410" width="310" height="180" fill="#ffffff" stroke="#5f7f95"/>
+    <text x="1075" y="448" text-anchor="middle" class="h">Giải thích và ứng dụng</text>
+    <text x="950" y="485" class="t">• XAI bằng hệ số TF-IDF</text>
+    <text x="950" y="516" class="t">• Phân tích lỗi dự đoán</text>
+    <text x="950" y="547" class="t">• Nhóm TMĐT (khám phá)</text>
+  </g>
+  <path class="arrow" d="M545 500 H485"/><path class="arrow" d="M860 500 H915"/>
+  <text x="700" y="660" text-anchor="middle" class="small">Không dùng SMOTE hoặc class weight trong benchmark PhishVN cuối; test không tham gia lựa chọn mô hình.</text>
+</svg>

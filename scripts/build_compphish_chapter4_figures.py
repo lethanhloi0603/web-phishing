@@ -138,11 +138,28 @@ def plot_representative_models(metrics: pd.DataFrame, output: Path, dpi: int) ->
     for index, ((column, label), color) in enumerate(zip(measures, colors)):
         values = subset[column].astype(float).to_numpy()
         bars = axis.bar(x + (index - 1) * width, values, width, label=label, color=color)
-        axis.bar_label(bars, labels=[f"{value:.3f}" for value in values], padding=2, fontsize=7.5, rotation=90)
-    axis.set_xticks(x, [model_label(model).replace("Full ", "") for model in models], rotation=18, ha="right")
-    axis.set_ylim(0.80, 1.015)
+        axis.bar_label(
+            bars,
+            labels=[f"{value:.3f}" for value in values],
+            padding=4,
+            fontsize=8.2,
+            rotation=0,
+        )
+    tick_labels = [
+        "CatBoost",
+        "XGBoost",
+        "LightGBM",
+        "Extra Trees",
+        "Boosting\nStacking",
+        "Heterogeneous\nStacking",
+    ]
+    axis.set_xticks(x, tick_labels, rotation=0, ha="center")
+    axis.set_ylim(0.80, 1.025)
     axis.set_ylabel("Score")
-    axis.set_title("Representative single models and stacking ensembles on the Full view")
+    axis.set_title(
+        "Representative single models and stacking ensembles on the Full view",
+        pad=22,
+    )
     axis.grid(axis="y", alpha=0.22)
     axis.legend(frameon=False, ncol=3, loc="lower center", bbox_to_anchor=(0.5, -0.34))
     save(fig, output / "figure_4_2_single_vs_stacking.png", dpi)
@@ -159,27 +176,70 @@ def curve_models() -> list[tuple[str, str]]:
 
 def plot_pr_roc(predictions: pd.DataFrame, output: Path, dpi: int) -> None:
     y = predictions["label_binary"].astype(int).to_numpy()
-    fig, axes = plt.subplots(1, 2, figsize=(12.2, 5.2))
     line_styles = ["-", "--", "-.", ":"]
+
+    # Precision–Recall is kept as a standalone figure so labels and the
+    # separation between the strongest curves remain legible in a thesis page.
+    fig_pr, axis_pr = plt.subplots(figsize=(8.8, 6.2))
     for (model, color), style in zip(curve_models(), line_styles):
         score = predictions[score_column(model)].astype(float).to_numpy()
         precision, recall, _ = precision_recall_curve(y, score)
         ap = average_precision_score(y, score)
-        axes[0].plot(recall, precision, color=color, linestyle=style, linewidth=2,
-                     label=f"{model_label(model)} (AP={ap:.3f})")
+        axis_pr.plot(
+            recall,
+            precision,
+            color=color,
+            linestyle=style,
+            linewidth=2.2,
+            label=f"{model_label(model)} (AP={ap:.3f})",
+        )
+    prevalence = float(y.mean())
+    axis_pr.axhline(
+        prevalence,
+        color="#777777",
+        linewidth=1.2,
+        linestyle="--",
+        label=f"Prevalence={prevalence:.3f}",
+    )
+    axis_pr.set(
+        xlabel="Recall",
+        ylabel="Precision",
+        title="Precision–Recall curves",
+        xlim=(0, 1),
+        ylim=(0, 1.02),
+    )
+    axis_pr.grid(alpha=0.22)
+    axis_pr.legend(frameon=False, fontsize=9, loc="lower left")
+    save(fig_pr, output / "figure_4_3_precision_recall_curve.png", dpi)
+
+    # ROC uses the same model/color/style mapping in a second standalone file.
+    fig_roc, axis_roc = plt.subplots(figsize=(8.8, 6.2))
+    for (model, color), style in zip(curve_models(), line_styles):
+        score = predictions[score_column(model)].astype(float).to_numpy()
         fpr, tpr, _ = roc_curve(y, score)
         auc = roc_auc_score(y, score)
-        axes[1].plot(fpr, tpr, color=color, linestyle=style, linewidth=2,
-                     label=f"{model_label(model)} (AUC={auc:.3f})")
-    prevalence = float(y.mean())
-    axes[0].axhline(prevalence, color="#777777", linewidth=1, linestyle="--", label=f"Prevalence={prevalence:.3f}")
-    axes[0].set(xlabel="Recall", ylabel="Precision", title="Precision–Recall curves", xlim=(0, 1), ylim=(0, 1.02))
-    axes[1].plot([0, 1], [0, 1], color="#777777", linewidth=1, linestyle="--", label="Random classifier")
-    axes[1].set(xlabel="False positive rate", ylabel="True positive rate", title="ROC curves", xlim=(0, 1), ylim=(0, 1.02))
-    for axis in axes:
-        axis.grid(alpha=0.22)
-        axis.legend(frameon=False, fontsize=8.2, loc="lower right")
-    save(fig, output / "figure_4_3_pr_roc_curves.png", dpi)
+        axis_roc.plot(
+            fpr,
+            tpr,
+            color=color,
+            linestyle=style,
+            linewidth=2.2,
+            label=f"{model_label(model)} (AUC={auc:.3f})",
+        )
+    axis_roc.plot(
+        [0, 1], [0, 1], color="#777777", linewidth=1.2,
+        linestyle="--", label="Random classifier",
+    )
+    axis_roc.set(
+        xlabel="False positive rate",
+        ylabel="True positive rate",
+        title="ROC curves",
+        xlim=(0, 1),
+        ylim=(0, 1.02),
+    )
+    axis_roc.grid(alpha=0.22)
+    axis_roc.legend(frameon=False, fontsize=9, loc="lower right")
+    save(fig_roc, output / "figure_4_4_roc_curve.png", dpi)
 
 
 def plot_confusion(predictions: pd.DataFrame, output: Path, threshold: float, dpi: int) -> None:
@@ -199,7 +259,7 @@ def plot_confusion(predictions: pd.DataFrame, output: Path, threshold: float, dp
     )
     axes[1].set_title("Normalized by true class")
     fig.suptitle(f"Full Boosting Stacking confusion matrix (threshold={threshold:.2f})", y=1.02)
-    save(fig, output / "figure_4_4_confusion_matrix.png", dpi)
+    save(fig, output / "figure_4_6_confusion_matrix.png", dpi)
 
 
 def plot_calibration(predictions: pd.DataFrame, metrics: pd.DataFrame, output: Path, dpi: int) -> None:
