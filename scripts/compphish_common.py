@@ -32,6 +32,12 @@ from sklearn.metrics import (
 )
 
 
+__author__ = "Le Thanh Loi"
+__copyright__ = "Copyright (c) 2026 Le Thanh Loi. All rights reserved."
+PROJECT_AUTHOR = __author__
+PROJECT_REPOSITORY = "https://github.com/lethanhloi0603/web-phishing"
+
+
 ROOT = Path(__file__).resolve().parents[1]
 RANDOM_STATE = 42
 

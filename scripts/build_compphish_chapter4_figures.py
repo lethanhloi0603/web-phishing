@@ -28,7 +28,7 @@ from sklearn.metrics import (
     roc_curve,
 )
 
-from compphish_common import project_path
+from compphish_common import PROJECT_AUTHOR, PROJECT_REPOSITORY, project_path
 
 
 COLORS = {
@@ -325,6 +325,8 @@ def main() -> None:
     export_tables(metrics, output)
 
     manifest = {
+        "project_author": PROJECT_AUTHOR,
+        "project_repository": PROJECT_REPOSITORY,
         "source_experiment": str(experiment),
         "test_rows": int(len(predictions)),
         "threshold": float(args.threshold),

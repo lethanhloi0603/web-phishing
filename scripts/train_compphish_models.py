@@ -51,6 +51,8 @@ from compphish_common import (
     FEATURE_SETS_PUBLISHED,
     FoldSafePhishingMeanFeatures,
     LABEL_DERIVED_COLUMNS,
+    PROJECT_AUTHOR,
+    PROJECT_REPOSITORY,
     RANDOM_STATE,
     evaluate_binary,
     project_path,
@@ -616,6 +618,7 @@ def main() -> None:
 
     selected = {
         "model": reference_name, "threshold": args.threshold,
+        "project_author": PROJECT_AUTHOR,
         "selection_source": "pre-specified before Test",
         "selection_order": None,
         "threshold_source": "fixed by protocol",
@@ -626,6 +629,8 @@ def main() -> None:
     )
     configuration = {
         "dataset": "CompPhish v4",
+        "project_author": PROJECT_AUTHOR,
+        "project_repository": PROJECT_REPOSITORY,
         "processed_data": str(project_path(args.data, must_exist=True)),
         "split": "registered-domain-disjoint Train/Test",
         "train_rows": len(train), "test_rows": len(test),

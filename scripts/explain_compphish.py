@@ -29,6 +29,8 @@ from sklearn.inspection import permutation_importance
 from compphish_common import (
     FEATURE_SETS,
     FEATURE_SETS_PUBLISHED,
+    PROJECT_AUTHOR,
+    PROJECT_REPOSITORY,
     project_path,
     read_processed,
 )
@@ -266,6 +268,8 @@ def main() -> None:
     )
 
     scope = {
+        "project_author": PROJECT_AUTHOR,
+        "project_repository": PROJECT_REPOSITORY,
         "framework_feature_count": len(FEATURE_SETS_PUBLISHED["full"]),
         "ensemble_level": (
             "Exact logistic meta-classifier coefficients reported separately "
