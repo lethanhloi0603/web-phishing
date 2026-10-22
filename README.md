@@ -1,67 +1,80 @@
-# CompPhish leakage-aware phishing detection benchmark
+# Phishing website detection on CompPhish
 
 Copyright (c) 2026 Le Thanh Loi. All rights reserved.
 
-This repository contains the reproducible source code and compact research
-evidence for a phishing-website detection study on CompPhish v4.
+This repository contains the code used in my phishing-detection study on the
+CompPhish v4 dataset. The experiments compare URL and HTML feature groups,
+several supervised learning algorithms, and two stacking configurations.
 
-## Research protocol
+## Experimental setup
 
-- Integrity-clean, domain-disjoint Train/Test split.
-- 15,257 cleaned samples: 13,203 Train and 2,054 Test.
-- 70 published features: 47 Brand-URL and 23 HTML/content features.
-- `url_more_than_mean` and `domain_more_than_mean` are recomputed only from
-  phishing rows in the relevant training partition.
-- Twelve base learners are evaluated independently on Brand-URL, HTML and Full
-  feature views, producing 36 base configurations.
-- Boosting Stacking and Heterogeneous Stacking are constructed independently
-  inside each feature view using five-fold out-of-fold predictions.
-- `StratifiedGroupKFold` is grouped by registered domain inside Train.
-- The classification threshold is fixed at 0.5 and Test is not used for model
-  fitting or configuration decisions.
-- Full CatBoost is the feature-level XAI reference model.
-- TreeSHAP and permutation importance are used for feature-level explanation.
+After URL normalization and duplicate removal, the dataset contains 15,257
+samples. The Train set contains 13,203 samples and the Test set contains 2,054.
+Samples connected by registered domain, an identical feature vector, or
+identical HTML are kept in the same partition.
 
-## Main scripts
+The experiments use all 70 features published with CompPhish:
 
-| Script | Purpose |
+- **Brand-URL:** 47 URL and brand-jacking features.
+- **HTML:** 23 content features.
+- **Full:** all 70 features.
+
+The same 12 base learners are trained separately on each feature view. This
+produces 36 base-model configurations. Boosting Stacking and Heterogeneous
+Stacking are then evaluated within each view. Their second-level inputs are
+created from five-fold out-of-fold predictions grouped by registered domain.
+
+The two label-conditioned features, `url_more_than_mean` and
+`domain_more_than_mean`, are recalculated inside each training partition. The
+decision threshold is fixed at 0.5. Test data are not used to fit models,
+choose configurations, or set the threshold.
+
+Full CatBoost is retained as the reference model for feature-level
+interpretation. Its predictions are examined with TreeSHAP and permutation
+importance.
+
+## Scripts
+
+| Script | What it does |
 |---|---|
-| `scripts/prepare_compphish.py` | Read, clean and normalize the published workbook |
-| `scripts/prepare_compphish_integrity_split.py` | Build the integrity-clean Train/Test split |
-| `scripts/audit_compphish_leakage.py` | Audit domain, feature-vector and HTML overlap |
-| `scripts/understand_compphish.py` | Produce data-understanding tables and figures |
-| `scripts/train_compphish_models.py` | Train base learners and branch-aligned OOF stacking models |
-| `scripts/analyze_compphish_results.py` | Summarize final model performance |
-| `scripts/run_compphish_ablation.py` | Run feature-removal ablations |
-| `scripts/compare_compphish_ablations.py` | Compare the ablation variants |
-| `scripts/explain_compphish.py` | Generate TreeSHAP and permutation-importance outputs |
-| `scripts/build_compphish_chapter3_feature_figure.py` | Build the Chapter 3 feature-structure figure |
-| `scripts/build_compphish_chapter4_figures.py` | Build the Chapter 4 result figures |
+| `scripts/prepare_compphish.py` | Reads and cleans the published feature workbook |
+| `scripts/prepare_compphish_integrity_split.py` | Creates the Train/Test split while keeping related samples together |
+| `scripts/audit_compphish_leakage.py` | Checks cross-partition domain, feature-vector, and HTML overlap |
+| `scripts/understand_compphish.py` | Produces descriptive tables and figures for the dataset |
+| `scripts/train_compphish_models.py` | Trains the base models and branch-specific OOF stacking models |
+| `scripts/analyze_compphish_results.py` | Summarizes model performance |
+| `scripts/run_compphish_ablation.py` | Runs the feature-removal experiments |
+| `scripts/compare_compphish_ablations.py` | Compares the ablation variants |
+| `scripts/explain_compphish.py` | Produces the TreeSHAP and permutation-importance results |
+| `scripts/build_compphish_chapter3_feature_figure.py` | Draws the feature-group figure used in Chapter 3 |
+| `scripts/build_compphish_chapter4_figures.py` | Creates the performance figures used in Chapter 4 |
 
-## Reproduction
+## Running the experiments
 
-Install the dependencies:
+Install the required Python packages:
 
 ```powershell
 .\.venv311\Scripts\python.exe -m pip install -r requirements-compphish.txt
 ```
 
-Run the workflow using the commands documented in
+The commands for preparing the data, training the models, running the audits,
+and generating the figures are listed in
 [`COMPPHISH_RUNBOOK.md`](COMPPHISH_RUNBOOK.md).
 
-## Repository scope
+## Data and generated files
 
-The raw CompPhish distribution, processed datasets, fitted model binaries and
-large generated audit tables are intentionally excluded from Git. Obtain the
-dataset from its official distribution and preserve its licence and citation
-terms.
+The CompPhish files are not redistributed in this repository. Processed data,
+trained models, and large generated artifacts are also excluded from Git. They
+can be recreated locally by following the runbook after obtaining CompPhish
+from its official distribution.
 
-The repository contains source code and selected compact evidence only. It
-does not contain or serve live phishing websites, execute archived JavaScript,
-or submit forms from the collected HTML pages.
+The archived HTML is used only for offline integrity checks and feature
+analysis. The scripts do not host phishing pages, execute archived JavaScript,
+or submit webpage forms.
 
-## Dataset citation
+## CompPhish
 
-CompPhish is distributed through Mendeley Data. Users of this repository must
-cite the dataset and its accompanying publication according to the official
-dataset page.
+The dataset is available from the
+[official CompPhish page on Mendeley Data](https://data.mendeley.com/datasets/fmbs4kp9wz/4).
+Please follow the licence and citation instructions provided by the dataset
+authors.
