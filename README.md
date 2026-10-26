@@ -94,4 +94,4 @@ not host phishing pages, execute archived JavaScript or submit web forms.
 
 ## Author
 
-Lê Thành Lợi — 2026.
+Lê Thành Lợi (2026).
