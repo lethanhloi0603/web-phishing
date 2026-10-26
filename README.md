@@ -85,7 +85,7 @@ Run the workflow using the commands in
 
 The raw CompPhish distribution, processed datasets, archived HTML and fitted
 model binaries are not redistributed here. CompPhish is available from the
-[official Mendeley Data release](https://data.mendeley.com/datasets/fmbs4kp9wz/4);
+[official Mendeley Data release](https://data.mendeley.com/datasets/fmbs4kp9wz/4).
 users should follow the licence and citation requirements stated by the dataset
 authors.
 
