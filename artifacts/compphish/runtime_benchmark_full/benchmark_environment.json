@@ -1,0 +1,18 @@
+{
+  "benchmark_scope": "12 Full-view base learners and 2 Full-view stackers",
+  "single_training_definition": "one fit on all Train rows",
+  "stacking_training_definition": "five-fold OOF fits plus full-Train refits of all members plus meta fit",
+  "repeats": 3,
+  "inference_repeats_per_timing_repeat": 20,
+  "train_rows": 13203,
+  "test_rows": 2054,
+  "cv_folds": 5,
+  "seed": 42,
+  "python": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.19045-SP0",
+  "processor": "Intel64 Family 6 Model 142 Stepping 10, GenuineIntel",
+  "logical_cpu_count": 8,
+  "parallelism": "native model settings from the final experiment",
+  "metrics_source": "C:\\Users\\admin\\Downloads\\phishgen_detector\\artifacts\\compphish\\branch_stacking_full\\metrics.csv",
+  "test_used_for_timing_only": true
+}

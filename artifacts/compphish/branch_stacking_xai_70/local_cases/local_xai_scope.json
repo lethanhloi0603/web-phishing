@@ -1,0 +1,17 @@
+{
+  "feature_model": "full__catboost",
+  "model_path": "C:\\Users\\admin\\Downloads\\phishgen_detector\\artifacts\\compphish\\branch_stacking_full\\models\\full__catboost.joblib",
+  "dataset": "CompPhish v4 integrity-clean Test split",
+  "test_rows": 2054,
+  "feature_count": 70,
+  "threshold": 0.5,
+  "case_types": [
+    "tp",
+    "fn",
+    "fp"
+  ],
+  "selection_rule": "Within each TP/FN/FP category, select the observation whose phishing score is nearest to that category's median score.",
+  "shap_scope": "Local TreeSHAP explanations of Full CatBoost only; not an explanation of either stacking ensemble.",
+  "causal_warning": "SHAP values explain model-output contributions and do not establish causal relationships in real phishing behavior.",
+  "display_note": "SHAP contributions use transformed pipeline inputs; waterfall feature values are displayed on the original published scale."
+}

@@ -31,3 +31,8 @@ external/
 .idea/
 Thumbs.db
 .DS_Store
+
+# Local document-review snapshots and temporary work directories.
+.codex_review*/
+.codex_review_snapshot.docx
+.skill_build/
