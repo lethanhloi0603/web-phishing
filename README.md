@@ -89,9 +89,6 @@ model binaries are not redistributed here. CompPhish is available from the
 users should follow the licence and citation requirements stated by the dataset
 authors.
 
-Archived pages are used only for offline integrity checks. The repository does
-not host phishing pages, execute archived JavaScript or submit web forms.
-
 ## Author
 
 Lê Thành Lợi (2026).
