@@ -22,7 +22,6 @@ OOF stacking ensembles, followed by two-level explainability.
    the fixed decision threshold 0.5.
 7. Report accuracy, precision, recall, specificity, F1, balanced accuracy,
    PR-AUC, ROC-AUC, MCC, FPR, FNR, Brier score, ECE, and confusion counts.
-   Paired bootstrap and McNemar are outside the thesis protocol.
 8. Explain each stacker using its logistic meta-classifier coefficients and
    explain the pre-specified Full CatBoost reference model using TreeSHAP plus
    permutation importance. CatBoost feature explanations are not presented as
